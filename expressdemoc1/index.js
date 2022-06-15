@@ -16,6 +16,7 @@ server.get("/contact",(req,res)=>{
         fname:"john",
         email:"john@gmail.com"
     }
+   
     res.send(JSON.stringify(userdata))
 
 })
