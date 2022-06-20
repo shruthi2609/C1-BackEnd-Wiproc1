@@ -38,7 +38,6 @@ server.post("/setdetails",(req,res)=>{
     res.send("set details")
 })
 
-
 server.all("*",(req,res)=>{
     res.status(400).send("page not found")
 })
