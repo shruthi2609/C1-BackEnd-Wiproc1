@@ -60,4 +60,9 @@ server.post("/create",(req,res)=>{
     res.send("dummy")
 })
 
+
+server.get('/test/:name([a-zA-Z]+)',(req,res)=>{
+    res.send( 'Route match for User ID: ' + req.params.name );
+} );
+
 server.listen(3001,()=>console.log("server started"))
