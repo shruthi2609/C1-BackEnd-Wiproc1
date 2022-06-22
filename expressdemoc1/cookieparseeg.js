@@ -8,7 +8,7 @@ server.use(bp.json())
 
 server.post("/signup",(req,res)=>{
     const value=req.body.uname
-    res.cookie('userdetails','someadded')
+    res.cookie('userdetails','someadded',{maxAge:900000})
     res.send("signup successfully")
 })
 
