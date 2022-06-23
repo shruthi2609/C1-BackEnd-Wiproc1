@@ -5,10 +5,14 @@ server.use(cookieParser())
 const bp=require("body-parser")
 const jsonparser=bp.json()
 server.use(bp.json())
-
-server.post("/signup",(req,res)=>{
-    const value=req.body.uname
-    res.cookie('userdetails','someadded',{maxAge:900000})
+const cors=require("cors")
+const corsOptions = {
+    credentials: true,
+    
+  };
+server.use(cors(corsOptions));
+server.get("/signup",(req,res)=>{
+    res.cookie('userdetails','someadded',{maxAge:900000,httpOnly:true})
     res.send("signup successfully")
 })
 
