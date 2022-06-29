@@ -1,6 +1,7 @@
 const express=require("express")
 const server=express()
 const fs=require("fs")
+const testcol=require("./models/dummymon")
 server.get("/create",(req,res)=>{
 fs.readFile("./data.json",(err,data)=>{
     const users=JSON.parse(data)
@@ -18,6 +19,10 @@ fs.readFile("./data.json",(err,data)=>{
         }
     })
 })
+})
+
+server.get("/cr",(req,res)=>{
+testcol.create({name:"testtt",email:"test@gmail.com"}).then((r)=>res.send("success"))
 })
 
 server.listen(3001,()=>console.log("server started"))
