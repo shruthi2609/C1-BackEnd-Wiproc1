@@ -1,0 +1,11 @@
+const express=require("express")
+const app=express()
+const mongoose=require("mongoose")
+const bodyParser=require("body-parser")
+const ContactManager=require("./routes/ContactManagerRoutes")
+app.use(bodyParser.json()
+)
+app.use("/",ContactManager)
+mongoose.connect("mongodb://localhost:27017/c1sinon").then((res)=>console.log("connecting")).catch((err)=>console.log(err))
+
+app.listen(3001,()=>console.log("server started"))
