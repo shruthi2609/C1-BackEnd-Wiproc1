@@ -23,25 +23,7 @@
 *            email: carry@gmail.com 
 *            phone: 293892382
 */
-/**
-* @swagger
-*paths:
-*  "/create":
-*    post:
-*      summary: add a new user
-*      requestBody:
-*        description: required a desc
-*        required: true
-*        content:
-*          application/json:
-*            schema:
-*              "$ref": "#/components/schemas/Contact"
-*      responses:
-*        '201':
-*          description: Created
-*        '404':
-*          description: not Created
-*/
+
 /**
 * @swagger
 {id}:
@@ -64,6 +46,23 @@
 *                 $ref: '#/components/schemas/Contact'
 *         "404":
 *           description: user not found.
+*/
+/**
+* @swagger
+*paths:
+*  "/create":
+*    post:
+*      summary: add a new user
+*      requestBody:
+*        description: required a desc
+*        required: true
+*        content:
+*          application/json:
+*            schema:
+*              "$ref": "#/components/schemas/Contact"
+*      responses:
+*        '201':
+*          description: Created
 */
 const express=require("express")
 const router=express.Router()
