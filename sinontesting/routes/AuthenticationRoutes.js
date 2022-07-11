@@ -2,10 +2,11 @@ const express=require("express")
 const router=express.Router()
 const bcrypt=require("bcrypt")
 const UserModel=require("../models/UsersModel")
+const jwt=require("jsonwebtoken")
 router.post("/signup",async (req,res)=>{
-    const data=req.body
-    if(data.role==="admin"||data.roles==="trainer"||data.roles==="trainee")
-    {
+  console.log(req.body)
+   
+    
   /*  const salt=await bcrypt.genSalt(4)
     console.log(salt)
     const hashedpassword=await bcrypt.hash(data.password,salt)
@@ -30,10 +31,8 @@ router.post("/signup",async (req,res)=>{
     }
   }
 }
-else{
-  res.send("role is not supported")
-}
-})
+
+)
 
 router.post("/signin",async (req,res)=>{
   const data=req.body
@@ -42,7 +41,9 @@ router.post("/signin",async (req,res)=>{
   if(user){
   const comparison=await bcrypt.compare(data.password,user.password)
   if(comparison){
-    res.status(200).send({msg:"login successfull",status:true})
+    const generatedtoken=jwt.sign({email:data.email},'jamesbond',{expiresIn:'1h',algorithm:'HS512',issuer:'olympus.gl.in'})
+    console.log(generatedtoken)
+    res.status(200).send({msg:"login successfull",status:true,token:generatedtoken})
   }
   else{
     res.status(404).send({msg:"login is not successfull , please check your password",status:false})
@@ -57,3 +58,4 @@ router.post("/signin",async (req,res)=>{
   } 
 })
 module.exports=router
+

@@ -8,6 +8,7 @@ const swaggerUi=require("swagger-ui-express")
 const authentication=require("./routes/AuthenticationRoutes")
 app.use(bodyParser.json()
 )
+const protectedRoutes=require("./routes/ProtectedRoutes")
 //swagger options
 const options = {
     definition: {
@@ -36,6 +37,7 @@ swaggerUi.serve,
 swaggerUi.setup(specs,{explorer:true}))
 app.use("/",authentication)
 app.use("/",ContactManager)
+app.use("/",protectedRoutes)
 mongoose.connect("mongodb://localhost:27017/c1sinon").then((res)=>console.log("connecting")).catch((err)=>console.log(err))
 
 app.listen(3001,()=>console.log("server started"))
