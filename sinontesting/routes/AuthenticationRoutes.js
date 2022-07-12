@@ -4,7 +4,7 @@ const bcrypt=require("bcrypt")
 const UserModel=require("../models/UsersModel")
 const jwt=require("jsonwebtoken")
 router.post("/signup",async (req,res)=>{
-  console.log(req.body)
+ const data=req.body
    
     
   /*  const salt=await bcrypt.genSalt(4)
@@ -17,14 +17,19 @@ router.post("/signup",async (req,res)=>{
       res.status(400).send({msg:"email exists already",status:false})
     }
     else{
-    const hashedpassword=await bcrypt.hash(data.password,4)
-    console.log(hashedpassword)
     try{
-      const result=  await UserModel.create({
+      const hashedpassword=await bcrypt.hash(data.password,4)
+      const user=new UserModel({
         email:data.email,
-        password:hashedpassword
+        password:hashedpassword,
+        role:data.role,
+        age:data.age,
+        country:data.country,
+        pincode:data.pincode
       })
-      res.status(201).send("signup successfull")
+      const result=await user.signUp()
+      res.send("signup")
+      
     }
     catch(err){
         res.status(404).send(err)
