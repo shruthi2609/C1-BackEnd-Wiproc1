@@ -62,5 +62,13 @@ router.post("/signin",async (req,res)=>{
     res.status(404).send(err)
   } 
 })
+
+
+router.post("/login",async (req,res)=>{
+  const data=req.body
+  const result=await UserModel.signInStatics(data)
+  res.send(result)
+})
+
 module.exports=router
 
