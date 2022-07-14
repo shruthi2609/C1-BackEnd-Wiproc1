@@ -70,5 +70,21 @@ router.post("/login",async (req,res)=>{
   res.send(result)
 })
 
+router.get("/getUser/:email",async(req,res)=>{
+  const data=req.params.email
+  try{
+   const result= await UserModel.findOne({email:data},{password:0})
+   if(result){
+    res.status(200).send(result)
+   }
+  else{
+    res.status(400).send({msg:"not found"})
+  }
+  }
+  catch(err){
+    console.log(err)
+  }
+})
+
 module.exports=router
 
